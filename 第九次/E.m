@@ -1,0 +1,15 @@
+t = 0 : 0.01 : 4 * pi;
+m = 1;
+k = 1;
+mu = 0.01;
+omega0 = (k ./ m) .^ 0.5;
+omega = omega0 ./ 2;
+gamma = mu ./ m;
+delte = atan(omega .* mu ./ (k - omega .^2) .^ 0.5);
+F0 = 1;
+F = F0 .* sin(omega .^ t + delte);
+E1 = F0 .^ 2 ./ m ./2 ./ ((omega0 .^2 - omega .^ 2) .^ 2 + (gamma .* omega) .^ 2)  .* (omega .^2 .* (sin(omega .* t + delte)) .^ 2 + omega0 .^ 2 .* (cos(omega .* t + delte) .^2));
+plot(t,E1);
+xlabel('时间t/s');
+ylabel('机械能E/J');
+grid on;
